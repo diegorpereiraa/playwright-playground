@@ -1,27 +1,29 @@
-import test, { expect } from '@playwright/test';
-
-test.beforeEach('Validate Playground Home', async ({ page }) => {
-  await page.goto('');
-});
+import { test, expect } from '@playwright/test';
 
 test.describe('Playground Regression', () => {
-  test('Validate Playground Home', async ({ page }) => {
-    test.step('Validate Home Link', async () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('');
+  });
+
+  test('Validate Playground Home Links', async ({ page }) => {
+    await test.step('Validate Home Link', async () => {
       await expect(page.getByRole('link', { name: 'HOME' })).toBeVisible();
     });
 
-    test.step('Validate Login Link', async () => {
-      await expect(page.getByRole('link', { name: 'HOME' })).toBeVisible();
+    await test.step('Validate Login Link', async () => {
+      await expect(page.getByRole('link', { name: 'LOGIN' })).toBeVisible();
     });
-    test.step('Validate Form Link', async () => {
+
+    await test.step('Validate Form Link', async () => {
       await expect(page.getByRole('link', { name: 'FORM' })).toBeVisible();
     });
-    test.step('Validate Table Link', async () => {
+
+    await test.step('Validate Table Link', async () => {
       await expect(page.getByRole('link', { name: 'TABLE' })).toBeVisible();
     });
-    test.step('Validate About Link', async () => {
+
+    await test.step('Validate About Link', async () => {
       await expect(page.getByRole('link', { name: 'SOBRE' })).toBeVisible();
     });
   });
-
 });
